@@ -116,12 +116,18 @@
 			<scope>test</scope>
 		</dependency>
 
-
 		<dependency>
 			<groupId>com.github.jai-imageio</groupId>
 			<artifactId>jai-imageio-core</artifactId>
 			<version>1.3.0</version>
 		</dependency>
+
+        <dependency>
+            <groupId>com.miglayout</groupId>
+            <artifactId>miglayout-javafx</artifactId>
+            <version>5.0</version>
+        </dependency>
+
 	</dependencies>
 
 	<build>
@@ -197,7 +203,6 @@
 					</execution>
 				</executions>
 				<configuration>
-					<file>src/main/assembly/classpath.win</file>
 					<replacements>
 						<replacement>
 							<token>classpath=</token>
