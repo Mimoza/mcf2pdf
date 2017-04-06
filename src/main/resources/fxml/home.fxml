@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import net.sf.mcf2pdf.gui.components.LanguageComboBox?>
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<MigPane fx:id="mainPane"
+         xmlns="http://javafx.com/javafx"
+         xmlns:fx="http://javafx.com/fxml/1"
+         fx:controller="net.sf.mcf2pdf.gui.controllers.HomeController"
+         maxHeight="1024" maxWidth="1024" minHeight="100" minWidth="100" prefHeight="100.0" prefWidth="200.0"
+         styleClass="main-panel"
+         cols="[label, pref!][grow, 50::]"
+         rows=""
+    >
+    <!--  The "%" in the text-tag means that the text is going to be translated -->
+    <Label fx:id="convertLabel" text="%convert" alignment="CENTER" styleClass="label"/>
+    <LanguageComboBox fx:id="languageCombo" onAction="#changeLanguage"/><!-- maxHeight="16" maxWidth="44" minHeight="16" minWidth="44" prefHeight="16.0" prefWidth="44.0"-->
+
+</MigPane>

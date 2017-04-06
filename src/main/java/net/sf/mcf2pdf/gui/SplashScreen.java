@@ -1,6 +1,5 @@
 package net.sf.mcf2pdf.gui;
 
-import com.sun.javafx.application.LauncherImpl;
 import javafx.application.Preloader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
@@ -12,24 +11,21 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 
 import java.io.File;
 
 //https://blog.codecentric.de/en/2015/09/javafx-how-to-easily-implement-application-preloader-2/
 public class SplashScreen extends Preloader{
 
+	private static final Log LOG = LogFactory.getLog(SplashScreen.class);
 	private ProgressBar bar;
 	private ImageView imageView;
 	private Stage stage;
 
-	public static void main(String[] args) {
-		System.out.println( "Main method inside Thread : " +  Thread.currentThread().getName());
-		LauncherImpl.launchApplication(MainWindows.class, SplashScreen.class, args);
-	}
-
 	@Override
 	public void start(Stage stage) throws Exception {
-
 
 		File file = new File("src/main/resources/mcf2pdf.png");
 		Image image = new Image(file.toURI().toString());
@@ -54,7 +50,7 @@ public class SplashScreen extends Preloader{
 
 	@Override
 	public void handleStateChangeNotification(StateChangeNotification stateChangeNotification) {
-		System.out.println("State change notification : " + stateChangeNotification);
+		LOG.debug("State change notification : " + stateChangeNotification);
 		if (stateChangeNotification.getType() == StateChangeNotification.Type.BEFORE_START) {
 			stage.hide();
 		}
@@ -63,7 +59,7 @@ public class SplashScreen extends Preloader{
 	@Override
 	public void handleProgressNotification(ProgressNotification progressNotification) {
 		bar.setProgress(progressNotification.getProgress());
-		System.out.println("Progress " + bar.getProgress());
+		LOG.debug("Progress " + bar.getProgress());
 	}
 
 	@Override
