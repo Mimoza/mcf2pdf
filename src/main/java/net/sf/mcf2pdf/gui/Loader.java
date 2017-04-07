@@ -1,3 +1,11 @@
+/*
+ * Copyright © 2017 Mimoza <github@zhext.tk>
+ * This work is free. You can redistribute it and/or modify it under the
+ * terms of the Do What The Fuck You Want To Public License, Version 2,
+ * as published by Sam Hocevar. See the COPYING file or www.wtfpl.net
+ * for more details.
+ */
+
 package net.sf.mcf2pdf.gui;
 
 import com.drew.lang.annotations.Nullable;
@@ -49,7 +57,7 @@ public class Loader extends Application {
 		LOG.debug("Start method inside Thread : " +  Thread.currentThread().getName());
 		this.stage = stage;
 		stage.setTitle("mcf2pdf Convertor");
-		stage.getIcons().add(new Image(new File("src/main/resources/cewe_pdf.png").toURI().toString()));
+		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("images/cewe_pdf.png").toString()));
 		stage.setScene(createScene());
 		stage.show();
 	}
