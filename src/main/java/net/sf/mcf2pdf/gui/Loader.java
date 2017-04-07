@@ -27,12 +27,14 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import net.miginfocom.layout.LC;
 import net.sf.mcf2pdf.gui.i18n.Language;
+import net.sf.mcf2pdf.gui.i18n.UTF8Control;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.tbee.javafx.scene.layout.MigPane;
 
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ResourceBundle;
 
 public class Loader extends Application {
@@ -66,11 +68,11 @@ public class Loader extends Application {
 		LOG.debug(String.format("Loading of %s fxml file with %s language",fxmlName, language));
 		Pane pane = null;
 		try {
-			FXMLLoader fxmlLoader = new FXMLLoader();
+			FXMLLoader fxmlLoader = new FXMLLoader(Charset.forName("utf-8"));
 			// Here, just the resource bundles name is mentioned. You can add support for more languages
 			// by adding more properties-files in fxml folder of resources with language-specific endings like
 			// "mcf2pdf_fr_FR.properties".
-			fxmlLoader.setResources(ResourceBundle.getBundle("i18n.mcf2pdf", language.getLocale()));
+			fxmlLoader.setResources(ResourceBundle.getBundle("i18n.mcf2pdf", language.getLocale(), new UTF8Control()));
 			fxmlLoader.setLocation(Loader.class.getClassLoader().getResource("fxml/"+fxmlName+".fxml"));
 			pane =  fxmlLoader.load();
 		} catch (IOException ex) {
