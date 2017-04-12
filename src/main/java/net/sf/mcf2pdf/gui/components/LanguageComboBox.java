@@ -60,4 +60,13 @@ public class LanguageComboBox extends ComboBox<Language>{
 			}
 		}
 	}
+
+	//	public void changeLanguage(ActionEvent actionEvent) {
+//		LOG.debug("Change language to " + languageCombo.getSelectionModel().getSelectedItem());
+//		MigPane relodedPane =  (MigPane)Loader.loadFxml("home",languageCombo.getValue());
+//		mainPane.getScene().setRoot(relodedPane);
+//		LanguageComboBox newLanguageComboBox = (LanguageComboBox)relodedPane.lookup("#languageCombo");
+//		newLanguageComboBox.getSelectionModel().select(languageCombo.getValue());
+//		LOG.debug("Language changed");
+//	}
 }

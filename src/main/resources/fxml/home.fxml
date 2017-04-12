@@ -1,20 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import net.sf.mcf2pdf.gui.components.LanguageComboBox?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
 <?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TextField?>
+<?import java.lang.String?>
 <MigPane fx:id="mainPane"
          xmlns="http://javafx.com/javafx"
          xmlns:fx="http://javafx.com/fxml/1"
          fx:controller="net.sf.mcf2pdf.gui.controllers.HomeController"
-         maxHeight="1024" maxWidth="1024" minHeight="100" minWidth="100" prefHeight="100.0" prefWidth="200.0"
-         styleClass="main-panel"
-         cols="[label, pref!][grow, 50::]"
+         cols="[][][]"
          rows=""
-    >
-    <!--  The "%" in the text-tag means that the text is going to be translated -->
-    <Label fx:id="convertLabel" text="%convert" alignment="CENTER" styleClass="label"/>
-    <LanguageComboBox fx:id="languageCombo" onAction="#changeLanguage"/><!-- maxHeight="16" maxWidth="44" minHeight="16" minWidth="44" prefHeight="16.0" prefWidth="44.0"-->
+         styleClass="main-panel"
+>
+<!--  The "%" in the text-tag means that the text is going to be translated -->
+
+    <MenuBar MigPane.cc="dock north, gapbottom 10">
+            <Menu text="%menu.file">
+                <MenuItem fx:id="configOpenMenuItem" onAction="#showAbout" text="%menu.file.open" />
+                <MenuItem fx:id="saveMenuItem" onAction="#showAbout" text="%menu.file.save" />
+                <MenuItem fx:id="saveAsMenuItem" onAction="#showAbout" text="%menu.file.saveAs" />
+                <MenuItem fx:id="exitMenuItem" onAction="#closeAction" text="%menu.file.exit" />
+            </Menu>
+            <Menu fx:id="langMenu" text="%menu.lang"/>
+            <Menu fx:id="aboutMenuItem" text="%menu.about" onAction="#showAbout"/>
+    </MenuBar>
+
+    <Label text="%input"  MigPane.cc="align right"/><TextField fx:id="inputTextField" MigPane.cc="growx"/><Button fx:id="inputBtn" text="…" MigPane.cc="wrap" onAction="#showFileOpener"/>
+    <Label text="%output" MigPane.cc="align right"/><TextField fx:id="outputTextField" MigPane.cc="growx"/><Button fx:id="outputBtn" text="…" MigPane.cc="wrap" onAction="#showFileSaver"/>
+    <Label text="%dpi" MigPane.cc="align right"/><Spinner fx:id="dpiSpinner" styleClass="arrows-on-right-horizontal" MigPane.cc="growx, wrap"/>
+    <Label text="%pages" MigPane.cc="align right"/><Spinner fx:id="pagesSpinner" styleClass="split-arrows-horizontal" MigPane.cc="wrap"/>
+
+    <Button fx:id="convertButton" text="%convert" MigPane.cc="dock south, gaptop 10" onAction="#startConversion"/>
 
 </MigPane>

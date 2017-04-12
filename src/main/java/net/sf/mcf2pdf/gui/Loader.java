@@ -34,12 +34,14 @@ import org.tbee.javafx.scene.layout.MigPane;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ResourceBundle;
 
 public class Loader extends Application {
 	private static final Log LOG = LogFactory.getLog(Loader.class);
 	private Stage stage;
+	public static final URL ICON = Loader.class.getClassLoader().getResource("images/cewe_pdf.png");
 	
 	public static void main(String... args) {
 		LOG.debug( "Main method inside Thread : " +  Thread.currentThread().getName());
@@ -59,7 +61,7 @@ public class Loader extends Application {
 		LOG.debug("Start method inside Thread : " +  Thread.currentThread().getName());
 		this.stage = stage;
 		stage.setTitle("mcf2pdf Convertor");
-		stage.getIcons().add(new Image(getClass().getClassLoader().getResource("images/cewe_pdf.png").toString()));
+		stage.getIcons().add(new Image(ICON.toString()));
 		stage.setScene(createScene());
 		stage.show();
 	}
@@ -84,10 +86,12 @@ public class Loader extends Application {
 	public static Stage loadFxml(@Nullable Stage stage, String fxmlName, Language language){
 		Stage returnStage = stage == null? new Stage():stage ;
 		returnStage.setScene(new Scene(loadFxml(fxmlName, language)));
+		returnStage.setTitle("Mcf2Pdf");
+		returnStage.getIcons().add(new Image(ICON.toString()));
 		returnStage.show();
 		return returnStage;
 	}
-	
+
 	private Scene createScene() {
 		final MigPane container = new MigPane(new LC().wrapAfter(4));
 
@@ -101,7 +105,16 @@ public class Loader extends Application {
 		Stage fmxStage = new Stage();
 		fxmlBtn.setOnAction(actionEvent -> {
 			LOG.debug("Clic Fxml");
-			loadFxml(fmxStage,"home",Language.FR);
+			Stage loadedStage = loadFxml(null,"home",Language.FR);
+			loadedStage.setTitle("Mcf2Pdf");
+
+			loadedStage.setHeight(300.0);
+			loadedStage.setMaxHeight(1024.0);
+			loadedStage.setMinHeight(150.0);
+
+			loadedStage.setWidth(500.0);
+			loadedStage.setMaxWidth(1024.0);
+			loadedStage.setMinWidth(500.0);
 		});
 
 		Label scrLbl = new Label("Source");
